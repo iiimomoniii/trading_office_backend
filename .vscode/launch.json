@@ -1,0 +1,41 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug → DEV DB",
+      "type": "go",
+      "request": "launch",
+      "mode": "debug",
+      "program": "${workspaceFolder}/main.go",
+      "args": ["-env=dev"],
+      "envFile": "${workspaceFolder}/.env.dev"
+    },
+    {
+      "name": "Debug → QA DB",
+      "type": "go",
+      "request": "launch",
+      "mode": "auto",
+      "program": "${workspaceFolder}/main.go",
+      "args": ["-env=qa"],
+      "envFile": "${workspaceFolder}/.env.qa"
+    },
+    {
+      "name": "Debug → UAT DB",
+      "type": "go",
+      "request": "launch",
+      "mode": "auto",
+      "program": "${workspaceFolder}/main.go",
+      "args": ["-env=uat"],
+      "envFile": "${workspaceFolder}/.env.uat"
+    },
+    {
+      "name": "Debug → PROD DB",
+      "type": "go",
+      "request": "launch",
+      "mode": "auto",
+      "program": "${workspaceFolder}/main.go",
+      "args": ["-env=prod"],
+      "envFile": "${workspaceFolder}/.env.prod"
+    }
+  ]
+}

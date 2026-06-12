@@ -1,0 +1,32 @@
+app:
+  name: trading-office-api
+  environment: development
+
+fiber:
+  address: 0.0.0.0:8080
+  port: 8080
+  readTimeout: 30000
+  writeTimeout: 30000
+  idleTimeout: 30000
+  readBufferSize: 8192
+  bodyLimitSize: 10485760
+
+database:
+  host: localhost
+  port: 5432
+  user: ""
+  password: ""
+  dbname: trading_office
+  sslmode: disable
+
+jwt:
+  secret: ""
+  expiresIn: 3600
+
+claude:
+  apiKey: ""
+  model: claude-sonnet-4-20250514
+
+exchange:
+  baseUrl: https://api.binance.com
+  fetchInterval: 5

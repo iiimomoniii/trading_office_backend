@@ -1,0 +1,47 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: trading_office_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: trading_office
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: trading_office_backend
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      APP_ENV: prod
+      APP_PORT: "8080"
+      APP_NAME: trading-office-api
+      DB_HOST: postgres
+      DB_PORT: "5432"
+      DB_NAME: trading_office
+      DB_USER: postgres
+      DB_PASS: postgres
+      DB_SSLMODE: disable
+      CLAUDE_API_KEY: ${CLAUDE_API_KEY:-}
+      CLAUDE_MODEL: claude-sonnet-4-20250514
+      EXCHANGE_BASE_URL: https://api.binance.com
+      EXCHANGE_FETCH_INTERVAL: "5"
+    ports:
+      - "8080:8080"
+
+volumes:
+  postgres_data:

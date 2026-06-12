@@ -1,0 +1,26 @@
+basePath: /
+host: localhost:8080
+info:
+  contact: {}
+  description: Trading Office AI Dashboard API documentation
+  title: Trading Office AI Dashboard API
+  version: 0.1.0
+paths:
+  /live:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      summary: Health check
+      tags:
+      - dashboard
+schemes:
+- http
+securityDefinitions:
+  BearerAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"
