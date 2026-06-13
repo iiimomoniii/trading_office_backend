@@ -128,7 +128,7 @@ func overrideFromEnv() {
 	}
 	if v := os.Getenv("APP_PORT"); v != "" {
 		viper.Set("fiber.port", v)
-		viper.Set("fiber.address", fmt.Sprintf("0.0.0.0%s", v))
+		viper.Set("fiber.address", fmt.Sprintf("0.0.0.0:%s", v))
 	}
 	if v := os.Getenv("EXCHANGE_FETCH_INTERVAL"); v != "" {
 		viper.Set("exchange.fetchInterval", v)
